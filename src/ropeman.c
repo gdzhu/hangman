@@ -1,8 +1,6 @@
 #include "ropeman.h"
 #include "scoreboard.h"
 #include "display.h"
-char flag_id[32];
-char f_status[255];
 
 User curUser = {
     .userId = {0},
@@ -161,7 +159,6 @@ int selectLevel1() {
                 if (strcmp(curUser.userPasswd, u.userPasswd) == 0 ) {
                     memcpy(curUser.score, u.score, sizeof(curUser.score)-1);
                     memcpy(curUser.status, u.status, sizeof(curUser.status)-1);
-                    memcpy(flag_id, u.status, sizeof(flag_id)-1);
                     rtnCode = RTN_LEVEL2;
                 }
                 break;
@@ -189,7 +186,6 @@ void updateStatus()
     getStr(status, 128, stdin);
 
     memcpy(curUser.status, status, 128);
-    memcpy(flag_id, status, sizeof(flag_id)-1);
     write_file();
 
 }
@@ -367,8 +363,6 @@ int main(int argc, char* argv[]){
 #ifdef CHECK
     checkASLR();
 #endif
-    debug("%lx\n", (unsigned long)&flag_id);
-    debug("%lx\n", (unsigned long)&f_status);
     debug("%lx\n", (unsigned long)&read_file);
     debug("%lx\n", (unsigned long)&output);
     //selectContinue();

@@ -22,6 +22,4 @@ void get_content(char * , User*);
 
 extern User curUser;
 
-extern char flag_id[32];
-extern char f_status[255];
 #endif

@@ -44,10 +44,7 @@ char* read_file(const char *filename) {
         //err(1, "read_file fclose");
         return "[***OPENFILEWRONG***]";
     }
-    /*
-     * Help to save contents into f_status
-     * TODO: need to get the status out of content
-     */    
+
     debug("[you are in read_file]:%s\n", content);
     User u;
     get_content(content, &u);
@@ -55,9 +52,6 @@ char* read_file(const char *filename) {
     debug("[passwd]:%s\n", u.userPasswd);
     debug("[score]:%s\n", u.score);
     debug("[status]:%s\n", u.status);
-
-    memcpy(f_status, u.status, sizeof(u.status)-1);
-    debug("[you are in read_file]:%s\n", f_status);
 
     content[strcspn(content, "\n")] = 0;
     return strdup(content);
